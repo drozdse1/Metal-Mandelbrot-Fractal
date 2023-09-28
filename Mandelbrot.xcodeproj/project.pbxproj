@@ -14,7 +14,6 @@
 		43E0BC541C635C4F007599C4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC531C635C4F007599C4 /* Shaders.metal */; };
 		43E0BC561C636556007599C4 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC551C636556007599C4 /* Square.swift */; };
 		43E0BC581C6394B1007599C4 /* pal.png in Resources */ = {isa = PBXBuildFile; fileRef = 43E0BC571C6394B1007599C4 /* pal.png */; };
-		5887ACE82AC5795800BFC6BE /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5887ACE72AC5795800BFC6BE /* test.png */; };
 		5888D9002AC01B6A006A2432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5888D8FF2AC01B6A006A2432 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +26,6 @@
 		43E0BC531C635C4F007599C4 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.metal; };
 		43E0BC551C636556007599C4 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		43E0BC571C6394B1007599C4 /* pal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pal.png; sourceTree = "<group>"; };
-		5887ACE72AC5795800BFC6BE /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../../../../Downloads/test.png; sourceTree = "<group>"; };
 		5888D8FF2AC01B6A006A2432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				43E0BC571C6394B1007599C4 /* pal.png */,
-				5887ACE72AC5795800BFC6BE /* test.png */,
 				5888D8FF2AC01B6A006A2432 /* Assets.xcassets */,
 				43E0BC461C635495007599C4 /* MandelbrotViewController.swift */,
 				43E0BC441C635495007599C4 /* AppDelegate.swift */,
@@ -137,7 +134,6 @@
 				43E0BC581C6394B1007599C4 /* pal.png in Resources */,
 				5888D9002AC01B6A006A2432 /* Assets.xcassets in Resources */,
 				43E0BC4C1C635495007599C4 /* Main.storyboard in Resources */,
-				5887ACE82AC5795800BFC6BE /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
