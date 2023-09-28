@@ -15,7 +15,7 @@ import Accelerate
 struct Uniform {
   var scale: Float = 1
   var translation: (x: Float, y: Float) = (0, 0)
-  var maxNumberOfiterations: Float = 500
+  var maxNumberOfiterations: Float = 5000
   var aspectRatio: Float = 1
   
   fileprivate var raw: [Float] {
@@ -28,49 +28,44 @@ struct Uniform {
 
 /// I use class, to have deinit() for semaphores cleanup
 class BufferProvider {
-  
-  // General values
-  static let floatSize = MemoryLayout<Float>.size
-  static var bufferSize = Uniform.size
-  
-  // Reuse related
-  fileprivate(set) var indexOfAvaliableBuffer = 0
-  fileprivate(set) var numberOfInflightBuffers: Int
-  fileprivate var buffers:[MTLBuffer]
-  fileprivate(set) var avaliableResourcesSemaphore:DispatchSemaphore
-  
-  init(inFlightBuffers: Int, device: MTLDevice) {
     
-    avaliableResourcesSemaphore = DispatchSemaphore(value: inFlightBuffers)
+    // General values
+    static let floatSize = MemoryLayout<Float>.size
+    static var bufferSize = Uniform.size  // Assuming Uniform.size is defined
     
-    numberOfInflightBuffers = inFlightBuffers
-    buffers = [MTLBuffer]()
+    // Properties
+    private var indexOfAvailableBuffer = 0
+    private let numberOfInflightBuffers: Int
+    private var buffers: [MTLBuffer]
+    private let availableResourcesSemaphore: DispatchSemaphore
     
-    for _ in 0 ..< inFlightBuffers {
-      if let buffer = device.makeBuffer(length: BufferProvider.bufferSize, options: MTLResourceOptions()) {
-        buffer.label = "Uniform buffer"
-        buffers.append(buffer)
-      }
-    }
-  }
-  
-  deinit{
-    for _ in 0...numberOfInflightBuffers{
-      avaliableResourcesSemaphore.signal()
-    }
-  }
-  
-  func nextBufferWithData(_ uniform: Uniform) -> MTLBuffer {
-    
-    // Cycle through buffers
-    let uniformBuffer = self.buffers[indexOfAvaliableBuffer]
-    indexOfAvaliableBuffer += 1
-    if indexOfAvaliableBuffer == numberOfInflightBuffers {
-      indexOfAvaliableBuffer = 0
+    init(inFlightBuffers: Int, device: MTLDevice) {
+        numberOfInflightBuffers = inFlightBuffers
+        availableResourcesSemaphore = DispatchSemaphore(value: inFlightBuffers)
+        buffers = [MTLBuffer]()
+        
+        for _ in 0..<inFlightBuffers {
+            if let buffer = device.makeBuffer(length: BufferProvider.bufferSize, options: []) {
+                buffer.label = "Uniform buffer"
+                buffers.append(buffer)
+            }
+        }
     }
     
-    memcpy(uniformBuffer.contents(), uniform.raw, Uniform.size)
-    return uniformBuffer
-  }
-  
+    deinit {
+        for _ in 0..<numberOfInflightBuffers {
+            availableResourcesSemaphore.signal()
+        }
+    }
+    
+    func nextBufferWithData(_ uniform: Uniform) -> MTLBuffer {
+        // Cycle through buffers
+        let uniformBuffer = self.buffers[indexOfAvailableBuffer]
+        indexOfAvailableBuffer = (indexOfAvailableBuffer + 1) % numberOfInflightBuffers
+        
+        // Copy data into the buffer
+        memcpy(uniformBuffer.contents(), uniform.raw, BufferProvider.bufferSize)
+        
+        return uniformBuffer
+    }
 }

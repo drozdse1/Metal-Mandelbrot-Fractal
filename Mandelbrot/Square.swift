@@ -10,40 +10,50 @@ import Foundation
 import MetalKit
 
 struct Vertex {
-  let x, y, z : Float
+    let x, y, z : Float
 }
 
 struct Square {
-  
-  var vertexBuffer: MTLBuffer?
-  var vertexCount = 0
-  
-  init(device: MTLDevice) {
+    var vertexBuffer: MTLBuffer?
+    var vertexCount: Int
     
-    let A = Vertex(x: -1.0, y: -1.0, z: 0)
-    let B = Vertex(x: -1.0, y: 1.0, z: 0)
-    let C = Vertex(x: 1.0, y: -1.0, z: 0)
-    let D = Vertex(x: 1.0, y: 1.0, z: 0)
+    init(device: MTLDevice) {
+        let A = Vertex(x: -1.0, y: -1.0, z: 0),
+            B = Vertex(x: -1.0, y: 1.0, z: 0),
+            C = Vertex(x: 1.0, y: -1.0, z: 0),
+            D = Vertex(x: 1.0, y: 1.0, z: 0)
+        
+        let vertices = [A, B, C, B, D, C]
+        
+        vertexCount = vertices.count
+        vertexBuffer = Self.createVertexBuffer(device: device, vertices: vertices)
+    }
     
-    var vertices = [A, B, C, B, D, C]
-    vertexCount = vertices.count
-    vertexBuffer = device.makeBuffer(bytes: &vertices,
-                                     length: vertices.count * MemoryLayout<Vertex>.size,
-                                     options: MTLResourceOptions())
-  }
-  
-  func defaultSampler(_ device: MTLDevice) -> MTLSamplerState {
-    let sampler = MTLSamplerDescriptor()
-    sampler.minFilter             = MTLSamplerMinMagFilter.nearest
-    sampler.magFilter             = MTLSamplerMinMagFilter.nearest
-    sampler.mipFilter             = MTLSamplerMipFilter.nearest
-    sampler.maxAnisotropy         = 1
-    sampler.sAddressMode          = MTLSamplerAddressMode.clampToEdge
-    sampler.tAddressMode          = MTLSamplerAddressMode.clampToEdge
-    sampler.rAddressMode          = MTLSamplerAddressMode.clampToEdge
-    sampler.normalizedCoordinates = true
-    sampler.lodMinClamp           = 0
-    sampler.lodMaxClamp           = Float.greatestFiniteMagnitude
-    return device.makeSamplerState(descriptor: sampler)!
-  }
+    static func createVertexBuffer(device: MTLDevice, vertices: [Vertex]) -> MTLBuffer? {
+        guard !vertices.isEmpty else {
+            return nil
+        }
+        
+        return device.makeBuffer(
+            bytes: vertices,
+            length: vertices.count * MemoryLayout<Vertex>.stride,
+            options: []
+        )
+    }
+    
+    static func defaultSampler(for device:MTLDevice) -> MTLSamplerState? {
+        let samplerDescriptor = MTLSamplerDescriptor()
+        samplerDescriptor.minFilter = .nearest
+        samplerDescriptor.magFilter = .nearest
+        samplerDescriptor.mipFilter = .nearest
+        samplerDescriptor.maxAnisotropy = 1
+        samplerDescriptor.sAddressMode = .clampToEdge
+        samplerDescriptor.tAddressMode = .clampToEdge
+        samplerDescriptor.rAddressMode = .clampToEdge
+        samplerDescriptor.normalizedCoordinates = true
+        samplerDescriptor.lodMinClamp = 0
+        samplerDescriptor.lodMaxClamp = .greatestFiniteMagnitude
+        
+        return device.makeSamplerState(descriptor: samplerDescriptor)
+    }
 }

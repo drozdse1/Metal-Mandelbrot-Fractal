@@ -3,30 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		436F0AE11C64B4F400FE373D /* BufferProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F0AE01C64B4F400FE373D /* BufferProvider.swift */; };
 		43E0BC451C635495007599C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC441C635495007599C4 /* AppDelegate.swift */; };
 		43E0BC471C635495007599C4 /* MandelbrotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC461C635495007599C4 /* MandelbrotViewController.swift */; };
-		43E0BC491C635495007599C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E0BC481C635495007599C4 /* Assets.xcassets */; };
 		43E0BC4C1C635495007599C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E0BC4A1C635495007599C4 /* Main.storyboard */; };
 		43E0BC541C635C4F007599C4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC531C635C4F007599C4 /* Shaders.metal */; };
 		43E0BC561C636556007599C4 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0BC551C636556007599C4 /* Square.swift */; };
 		43E0BC581C6394B1007599C4 /* pal.png in Resources */ = {isa = PBXBuildFile; fileRef = 43E0BC571C6394B1007599C4 /* pal.png */; };
+		5887ACE82AC5795800BFC6BE /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5887ACE72AC5795800BFC6BE /* test.png */; };
+		5888D9002AC01B6A006A2432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5888D8FF2AC01B6A006A2432 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		436F0AE01C64B4F400FE373D /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BufferProvider.swift; sourceTree = "<group>"; tabWidth = 2; };
 		43E0BC411C635495007599C4 /* Mandelbrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mandelbrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		43E0BC441C635495007599C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
-		43E0BC461C635495007599C4 /* MandelbrotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandelbrotViewController.swift; sourceTree = "<group>"; };
-		43E0BC481C635495007599C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		43E0BC441C635495007599C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43E0BC461C635495007599C4 /* MandelbrotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandelbrotViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		43E0BC4B1C635495007599C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		43E0BC531C635C4F007599C4 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		43E0BC531C635C4F007599C4 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.metal; };
 		43E0BC551C636556007599C4 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		43E0BC571C6394B1007599C4 /* pal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pal.png; sourceTree = "<group>"; };
+		5887ACE72AC5795800BFC6BE /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../../../../Downloads/test.png; sourceTree = "<group>"; };
+		5888D8FF2AC01B6A006A2432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,15 +42,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		436F0AE21C64C2AE00FE373D /* Supporting files */ = {
-			isa = PBXGroup;
-			children = (
-				43E0BC441C635495007599C4 /* AppDelegate.swift */,
-				43E0BC481C635495007599C4 /* Assets.xcassets */,
-			);
-			path = "Supporting files";
-			sourceTree = "<group>";
-		};
 		43E0BC381C635495007599C4 = {
 			isa = PBXGroup;
 			children = (
@@ -68,9 +61,11 @@
 		43E0BC431C635495007599C4 /* Mandelbrot */ = {
 			isa = PBXGroup;
 			children = (
-				436F0AE21C64C2AE00FE373D /* Supporting files */,
 				43E0BC571C6394B1007599C4 /* pal.png */,
+				5887ACE72AC5795800BFC6BE /* test.png */,
+				5888D8FF2AC01B6A006A2432 /* Assets.xcassets */,
 				43E0BC461C635495007599C4 /* MandelbrotViewController.swift */,
+				43E0BC441C635495007599C4 /* AppDelegate.swift */,
 				43E0BC551C636556007599C4 /* Square.swift */,
 				436F0AE01C64B4F400FE373D /* BufferProvider.swift */,
 				43E0BC531C635C4F007599C4 /* Shaders.metal */,
@@ -105,8 +100,9 @@
 		43E0BC391C635495007599C4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Andriy K.";
 				TargetAttributes = {
 					43E0BC401C635495007599C4 = {
@@ -139,8 +135,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43E0BC581C6394B1007599C4 /* pal.png in Resources */,
-				43E0BC491C635495007599C4 /* Assets.xcassets in Resources */,
+				5888D9002AC01B6A006A2432 /* Assets.xcassets in Resources */,
 				43E0BC4C1C635495007599C4 /* Main.storyboard in Resources */,
+				5887ACE82AC5795800BFC6BE /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,9 +201,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -221,7 +220,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -261,9 +260,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -272,10 +273,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -286,8 +288,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Mandelbrot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haawa.WaniKani.Mandelbrot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -299,8 +306,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Mandelbrot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haawa.WaniKani.Mandelbrot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
