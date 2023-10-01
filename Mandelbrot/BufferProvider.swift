@@ -17,9 +17,10 @@ struct Uniform {
   var translation: (x: Float, y: Float) = (0, 0)
   var maxNumberOfiterations: Float = 5000
   var aspectRatio: Float = 1
+  var colorScale: Float = 23
   
   fileprivate var raw: [Float] {
-    return [scale, translation.x, translation.y, maxNumberOfiterations, aspectRatio, 0, 0, 0]
+    return [scale, translation.x, translation.y, maxNumberOfiterations, colorScale, aspectRatio, 0, 0]
   }
   
   static var size = MemoryLayout<Float>.size * 8

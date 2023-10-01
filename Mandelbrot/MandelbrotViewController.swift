@@ -13,9 +13,9 @@ import os
 class MandelbrotViewController: NSViewController {
     
     let logger = Logger()
-
+    
     // MARK: - Metal Properties
-
+    
     private var device: MTLDevice!
     private var commandQueue: MTLCommandQueue!
     private var pipelineState: MTLRenderPipelineState!
@@ -24,13 +24,15 @@ class MandelbrotViewController: NSViewController {
     private var samplerState: MTLSamplerState!
     private var uniformBufferProvider: BufferProvider!
     private var mandelbrotSceneUniform = Uniform()
-
+    
     // MARK: - Flags and Objects
-
+    
     private var needsRedraw = true
     private var forceAlwaysDraw = false
     private var square: Square!
     private var oldZoom: Float = 1.0
+    private var colorScale: Float = 100.0
+    
     private var shiftX: Float = 0
     private var shiftY: Float = 0
     
@@ -73,7 +75,7 @@ class MandelbrotViewController: NSViewController {
         square = Square(device: device)
 
         let textureLoader = MTKTextureLoader(device: device)
-        let path = Bundle.main.path(forResource: "pal", ofType: "png")!
+        let path = Bundle.main.path(forResource: "rainbow", ofType: "png")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         paletteTexture = try! textureLoader.newTexture(data: data, options: nil)
         samplerState = Square.defaultSampler(for: device)
@@ -169,6 +171,8 @@ extension MandelbrotViewController {
         logger.log("scrollingDeltaY: \(event.scrollingDeltaY)")
         
         let zoom = Float(event.scrollingDeltaY) / 20
+        colorScale = Float(event.scrollingDeltaX)
+        
         let zoomMultiplier = Float(max(Int(oldZoom / 100), 1)) // Speed up zooming as you go deeper
         
         oldZoom += zoom * zoomMultiplier
@@ -178,7 +182,8 @@ extension MandelbrotViewController {
         
         updateMandelbrotSceneUniform()
         
-        infoConsole.stringValue = "Coordinates: X:\(shiftX) Y:\(shiftY), Zoom: \(oldZoom)"
+        infoConsole.stringValue = "Coordinates: X:\(shiftX) Y:\(shiftY), Zoom: \(oldZoom), colorScale: \(mandelbrotSceneUniform.colorScale)"
+        
     }
     
     // MARK: - Update Mandelbrot Scene Uniform
@@ -186,6 +191,7 @@ extension MandelbrotViewController {
     private func updateMandelbrotSceneUniform() {
         mandelbrotSceneUniform.translation = (shiftX, shiftY)
         mandelbrotSceneUniform.scale = 1 / oldZoom
+        mandelbrotSceneUniform.colorScale = mandelbrotSceneUniform.colorScale + colorScale
         needsRedraw = true
     }
 }
@@ -220,8 +226,6 @@ extension MandelbrotViewController: MTKViewDelegate {
         renderEncoder.endEncoding()
         commandBuffer.present(drawable)
         commandBuffer.commit()
-        
-        view.drawPageBorder(with: NSSize(width: 20, height: 3))
         
         needsRedraw = false
     }

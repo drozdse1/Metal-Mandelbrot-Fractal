@@ -32,6 +32,7 @@ struct Uniforms {
     float xTranslate;
     float yTranslate;
     float maxIterations;
+    float colorScale;
     float aspectRatio;
 };
 
@@ -87,7 +88,7 @@ fragment float4 fragmentShader(VertexOut interpolated [[stage_in]],
     
     int n = findMandelbrot(x, y, maxN);
     
-    float2 paletCoord = float2((n == maxN ? 0.0 : float(n)) / 110.0  , 0);
+    float2 paletCoord = float2((n == maxN ? 0.0 : float(n)) / uniformBuffer.colorScale  , 0);
     float4 finalColor = tex2D.sample(sampler2D, paletCoord);
     
     return finalColor;
